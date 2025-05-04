@@ -11,7 +11,7 @@ class Student(models.Model):
     student_admission_date = models.DateField()
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-
+    status = models.CharField(max_length=10, default='present')
     def __str__(self):
         return self.student_name
     

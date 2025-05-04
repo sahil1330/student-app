@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+
+<h1>Update Student {{student.student_name}}</h1>
+
+<form method="POST" action="{% url 'update_student' student.student_id %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="student_name" class="form-label">Student Name</label>
+        <input type="text" class="form-control" id="student_name" name="student_name" value="{{ student.student_name }}"
+            required>
+    </div>
+    <div class="mb-3">
+        <label for="student_class" class="form-label">Student Class</label>
+        <input type="text" class="form-control" id="student_class" name="student_class"
+            value="{{ student.student_class }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="student_email" class="form-label">Student Email</label>
+        <input type="email" class="form-control" id="student_email" name="student_email"
+            value="{{ student.student_email }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="student_admission_date" class="form-label">Student Admission Date</label>
+        <input type="date" class="form-control" id="student_admission_date" name="student_admission_date"
+            value="{{ student.student_admission_date|date:'Y-m-d' }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Student</button>
+</form>
+
+{% if error_message %}
+<p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
+{% if success_message %}
+<p style="color: green;">{{ success_message }}</p>
+{% endif %}
+
+{% endblock %}
